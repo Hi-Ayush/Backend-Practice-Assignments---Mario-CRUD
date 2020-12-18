@@ -20,7 +20,7 @@ app.get("/mario/:id",(req,res)=>{
     const id=req.params.id;
     marioModel.findById({_id:id})
         .then((output)=>{res.send(output)})
-        .catch((error)=>{res.status(400).send({message: error.message})});
+        .catch((error)=>res.status(400).send({message: error.message}));
 });
 app.post("/mario",(req,res)=>{
     const {name,weight}=req.body;
@@ -30,9 +30,9 @@ app.post("/mario",(req,res)=>{
     });
     newMarioCharacter.save()
         .then((newMarioCharacter)=>{res.status(201).send(newMarioCharacter)})
-        .catch((error)=>{res.status(400).send({
+        .catch((error)=>res.status(400).send({
             message: 'either name or weight is missing'
-    })});
+    }));
 });
 
 
@@ -41,16 +41,16 @@ app.patch("/mario/:id", (req, res) => {
   marioModel
     .findByIdAndUpdate(id, req.body, { new: true })
     .then((mario) => res.send(mario))
-    .catch((error) => {res.status(400).send({ 
+    .catch((error) => res.status(400).send({ 
         message: error.message 
-    })});
+    }));
 });
 
 app.delete("/mario/:id",(req,res)=>{
     const id=req.params.id;
     marioModel.findByIdAndDelete({_id:id})
         .then((result)=>{res.status(200).send({message: 'character deleted'})})
-        .catch((error)=>{res.status(400).send({message: error.message})});
+        .catch((error)=>res.status(400).send({message: error.message}));
 })
 
 module.exports = app;
