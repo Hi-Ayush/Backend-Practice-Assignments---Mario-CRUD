@@ -18,7 +18,7 @@ app.get("/mario",(req,res)=>{
 
 app.get("/mario/:id",(req,res)=>{
     const id=req.params.id;
-    marioModel.findById({_id:id})
+    marioModel.findById(id)
         .then((result)=>{
         if(!result){
         res.status(400).send({message: 'Invalid id '});
@@ -53,7 +53,7 @@ app.patch("/mario/:id", (req, res) => {
 
 app.delete("/mario/:id",(req,res)=>{
     const id=req.params.id;
-    marioModel.findByIdAndDelete({_id:id})
+    marioModel.findByIdAndDelete(id)
         .then((result)=>{
         if(!result){
         res.status(400).send({message: 'Invalid id '});
