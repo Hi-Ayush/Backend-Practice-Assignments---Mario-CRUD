@@ -67,18 +67,18 @@ app.delete("/mario/:id",(req,res)=>{
 //         res.status(400).send({message: 'Invalid id '});
 //             return;
 //         }
-    marioModel.findByIdAndDelete(id, null, null, function(err, result) {
-        if (err) {
-            res.statusCode = 400;
-            res.json({ message: err.message });
-            return;
-        }
-        res.status(200).send({message: 'character deleted'})})
-    })
+//     marioModel.findByIdAndDelete(id, null, null, function(err, result) {
+//         if (err) {
+//             res.statusCode = 400;
+//             res.json({ message: err.message });
+//             return;
+//         }
+//         res.status(200).send({message: 'character deleted'})})
+//     })
       
-//     marioModel.findByIdAndDelete(id)
-//         .then((result) => res.json({ message: 'character deleted' }))
-//         .catch((err) => res.status(400).json({ message: err.message })); 
+    marioModel.findByIdAndDelete(id)
+        .then((result) => res.json({ message: 'character deleted' }))
+        .catch((err) => res.status(400).json({ message: err.message })); 
        
 })
 
