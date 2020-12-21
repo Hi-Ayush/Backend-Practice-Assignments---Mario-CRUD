@@ -18,13 +18,21 @@ app.get("/mario",(req,res)=>{
 
 app.get("/mario/:id",(req,res)=>{
     const id=req.params.id;
-    marioModel.findById(id)
-        .then((result)=>{
-        if(!result){
-        res.status(400).send({message: 'Invalid id '});
+//     marioModel.findById(id)
+//         .then((result)=>{
+//         if(!result){
+//         res.status(400).send({message: 'Invalid id '});
+//             return;
+//         }
+    marioModel.findById(id, null, null, function(err, result) {
+        if (err) {
+            res.statusCode = 400;
+            res.send({ message: err.message });
             return;
         }
-        res.status(200).send(result)})
+        res.send(result);
+    })
+//         res.status(200).send(result)})
        
 });
 app.post("/mario",(req,res)=>{
@@ -53,13 +61,21 @@ app.patch("/mario/:id", (req, res) => {
 
 app.delete("/mario/:id",(req,res)=>{
     const id=req.params.id;
-    marioModel.findByIdAndDelete(id)
-        .then((result)=>{
-        if(!result){
-        res.status(400).send({message: 'Invalid id '});
+//     marioModel.findByIdAndDelete(id)
+//         .then((result)=>{
+//         if(!result){
+//         res.status(400).send({message: 'Invalid id '});
+//             return;
+//         }
+    marioModel.findById(id, null, null, function(err, result) {
+        if (err) {
+            res.statusCode = 400;
+            res.json({ message: err.message });
             return;
         }
         res.status(200).send({message: 'character deleted'})})
+    })
+       
        
 })
 
