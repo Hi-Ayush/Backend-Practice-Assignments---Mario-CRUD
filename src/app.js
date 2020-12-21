@@ -27,10 +27,10 @@ app.get("/mario/:id",(req,res)=>{
     marioModel.findById(id, null, null, function(err, result) {
         if (err) {
             res.statusCode = 400;
-            res.send({ message: err.message });
+            res.json({ message: err.message });
             return;
         }
-        res.send(result);
+        res.json(result);
     })
 //         res.status(200).send(result)})
        
